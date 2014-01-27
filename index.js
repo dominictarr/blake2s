@@ -1,3 +1,5 @@
+var Buffer = require('buffer').Buffer
+
 var BLAKE2s = (function () {
     function BLAKE2s(digestLength, key) {
         if (typeof digestLength === "undefined") { digestLength = 32; }
@@ -1239,7 +1241,7 @@ var BLAKE2s = (function () {
         return arr;
     };
 
-    BLAKE2s.prototype.update = function (p, offset, length) {
+    BLAKE2s.prototype._update = function (p, offset, length) {
         if (typeof offset === "undefined") { offset = 0; }
         if (typeof length === "undefined") { length = p.length; }
         if (this.isFinished) {
@@ -1283,7 +1285,14 @@ var BLAKE2s = (function () {
         this.nx = length;
     };
 
-    BLAKE2s.prototype.digest = function () {
+    BLAKE2s.prototype.update = function (buffer, enc) {
+      if(enc)
+        buffer = new Buffer(buffer, enc)
+      this._update(buffer)
+      return this
+    }
+
+    BLAKE2s.prototype.digest = function (enc) {
         if (this.isFinished) {
             return this.result;
         }
@@ -1298,7 +1307,7 @@ var BLAKE2s = (function () {
         //TODO in tree mode, set f1 to 0xffffffff.
         this.processBlock(this.nx);
 
-        var out = new Array(32);
+        var out = new Buffer(32);
         for (var i = 0; i < 8; i++) {
             var h = this.h[i];
             out[i * 4 + 0] = (h >>> 0) & 0xff;
@@ -1308,18 +1317,13 @@ var BLAKE2s = (function () {
         }
         this.result = out.slice(0, this.digestLength);
         this.isFinished = true;
-        return this.result;
+        return enc ? this.result.toString(enc) : this.result;
     };
 
-    BLAKE2s.prototype.hexDigest = function () {
-        var hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
-        var out = [];
-        var d = this.digest();
-        for (var i = 0; i < d.length; i++) {
-            out.push(hex[(d[i] >> 4) & 0xf]);
-            out.push(hex[d[i] & 0xf]);
-        }
-        return out.join('');
-    };
     return BLAKE2s;
 })();
+
+if('undefined' === typeof module)
+  window.Blake2s = BLAKE2s
+else
+  module.exports = BLAKE2s
