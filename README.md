@@ -15,15 +15,16 @@ me how to correct the typescript implementation to node.js style.
 
 ## Usage
 
-  var h = new BLAKE2s(32); // constructor accepts digest length in bytes
-  h.update("string or array of bytes");
-  h.hexDigest();      // returns string with hex digest
-  h.digest();              // returns array of bytes
+``` js
+var h = new BLAKE2s(32); // constructor accepts digest length in bytes
+h.update("string or array of bytes");
+h.hexDigest();      // returns string with hex digest
+h.digest();              // returns array of bytes
 
-  // Keyed:
-  var h = new BLAKE2s(32, "some key");
-  ...
-
+// Keyed:
+var h = new BLAKE2s(32, "some key");
+...
+```
 
 ## Demo
 
