@@ -1,7 +1,7 @@
 {
   "name": "blake2s",
   "description": "port of Dmitry Chestnykh's blake2s-js to node style",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/dominictarr/blake2s",
   "repository": {
     "type": "git",
