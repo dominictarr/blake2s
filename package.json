@@ -1,0 +1,15 @@
+{
+  "name": "blake2s-js",
+  "description": "port of Dmitry Chestnykh's blake2s-js to node style",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dominictarr/blake2s",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/blake2s.git"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Dominic Tarr <dominic.tarr@gmail.com> (dominictarr.com)",
+  "license": "MIT"
+}
