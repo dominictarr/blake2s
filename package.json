@@ -7,10 +7,30 @@
     "type": "git",
     "url": "git://github.com/dominictarr/blake2s.git"
   },
-  "keywords": ["hash", "blake2", "blake2s"],
+  "keywords": [
+    "hash",
+    "blake2",
+    "blake2s"
+  ],
   "scripts": {
     "test": "node test.js"
   },
   "author": "Dominic Tarr <dominic.tarr@gmail.com> (dominictarr.com)",
-  "license": "Public Domain"
+  "license": "Public Domain",
+  "testling": {
+    "files": "test/*.js",
+    "browsers": [
+      "ie/8..latest",
+      "firefox/17..latest",
+      "firefox/nightly",
+      "chrome/22..latest",
+      "chrome/canary",
+      "opera/12..latest",
+      "opera/next",
+      "safari/5.1..latest",
+      "ipad/6.0..latest",
+      "iphone/6.0..latest",
+      "android-browser/4.2..latest"
+    ]
+  }
 }

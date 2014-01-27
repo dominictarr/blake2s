@@ -2,6 +2,11 @@
 
 A port of Dmitry Chestnykh's typescript blake2s implementation to node.js style javascript
 
+[![build status](https://secure.travis-ci.org/dominictarr/blake2s.png)](http://travis-ci.org/dominictarr/blake2s)
+
+[![testling badge](https://ci.testling.com/dominictarr/blake2s.png)](https://ci.testling.com/dominictarr/blake2s)
+
+
 I've left the blake2s.ts script in the source, and edited the output javascript.
 I did try to bring the typescript to node.js style, using `Buffer`, `update(buffer, enc)`
 but that made a lot of type errors, and in my opinion, type errors are not
