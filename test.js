@@ -562,6 +562,7 @@ for (i = 0; i < 256; i++) {
 }
 
 // short inputs
+
 console.log("Testing short inputs...");
 for (i = 2; i < 128; i++) {
   var arr = [];
@@ -571,8 +572,8 @@ for (i = 2; i < 128; i++) {
   var good = h0.digest('hex');
 
   var h1 = new BLAKE2s(32);
-  h1.update(arr, 0, Math.floor(i/2));
-  h1.update(arr, Math.floor(i/2), Math.ceil(i/2));
+  h1.update(new Buffer(arr).slice(0, Math.floor(i/2)));
+  h1.update(new Buffer(arr).slice(Math.floor(i/2), arr.length));
   var cand = h1.digest('hex');
 
   if (good != cand) {
@@ -582,6 +583,7 @@ for (i = 2; i < 128; i++) {
     passes++;
   }
 }
+
 
 if (fails == 0) {
     console.log('PASS');
