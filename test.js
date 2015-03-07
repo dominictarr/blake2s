@@ -529,7 +529,7 @@ for (i = 0; i < 256; i++) {
     for (j = 0; j < i; j++) {
         buf.push(j & 0xff);
     }
-    var h = new BLAKE2s(32);
+    var h = BLAKE2s(32);
     h.update(buf);
     if (h.digest('hex') != golden[i]) {
         console.log('fail #', i, '\n', 'have', h.digest('hex'), '\n', 'need', golden[i]);
@@ -551,7 +551,7 @@ for (i = 0; i < 256; i++) {
     for (j = 0; j < i; j++) {
         buf.push(j & 0xff);
     }
-    var h = new BLAKE2s(32, key);
+    var h = BLAKE2s(32, key);
     h.update(buf);
     if (h.digest('hex') != goldenKeyed[i]) {
         console.log('fail #', i, '\n', 'have', h.digest('hex'), '\n', 'need', goldenKeyed[i]);
@@ -567,11 +567,11 @@ console.log("Testing short inputs...");
 for (i = 2; i < 128; i++) {
   var arr = [];
   for (j = 0; j < i; j++) arr.push(j);
-  var h0 = new BLAKE2s(32);
+  var h0 = BLAKE2s(32);
   h0.update(arr);
   var good = h0.digest('hex');
 
-  var h1 = new BLAKE2s(32);
+  var h1 = BLAKE2s(32);
   h1.update(new Buffer(arr).slice(0, Math.floor(i/2)));
   h1.update(new Buffer(arr).slice(Math.floor(i/2), arr.length));
   var cand = h1.digest('hex');
@@ -598,7 +598,7 @@ if (fails == 0) {
   for (i = 0; i < 1024; i++) {
     buf.push(i & 0xff);
   }
-  var h = new BLAKE2s(32);
+  var h = BLAKE2s(32);
   var startTime = new Date();
   for (i = 0; i < 1024; i++) {
     h.update(buf);

@@ -2,6 +2,7 @@ var Buffer = require('buffer').Buffer
 
 var BLAKE2s = (function () {
     function BLAKE2s(digestLength, key) {
+        if(!(this instanceof BLAKE2s)) return new BLAKE2s(digestLength, key)
         if (typeof digestLength === "undefined") { digestLength = 32; }
         this.isFinished = false;
         this.digestLength = 32;
